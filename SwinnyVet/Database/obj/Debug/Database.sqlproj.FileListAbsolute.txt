@@ -1,0 +1,6 @@
+C:\Users\Zali\Documents\Cert IV in IT\GitHub\Database_Work\SwinnyVet\Database\bin\Debug\Database.dacpac
+C:\Users\Zali\Documents\Cert IV in IT\GitHub\Database_Work\SwinnyVet\Database\bin\Debug\Database.dll
+C:\Users\Zali\Documents\Cert IV in IT\GitHub\Database_Work\SwinnyVet\Database\bin\Debug\Database.pdb
+C:\Users\Zali\Documents\Cert IV in IT\GitHub\Database_Work\SwinnyVet\Database\obj\Debug\Database.sqlprojAssemblyReference.cache
+C:\Users\Zali\Documents\Cert IV in IT\GitHub\Database_Work\SwinnyVet\Database\obj\Debug\Database.dll
+C:\Users\Zali\Documents\Cert IV in IT\GitHub\Database_Work\SwinnyVet\Database\obj\Debug\Database.pdb

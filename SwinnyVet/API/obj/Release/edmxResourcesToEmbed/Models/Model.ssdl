@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+    </Key>
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+      <PropertyRef Name="PetName" />
+    </Key>
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="PetName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Procedure">
+    <Key>
+      <PropertyRef Name="ProcId" />
+    </Key>
+    <Property Name="ProcId" Type="int" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Treatment">
+    <Key>
+      <PropertyRef Name="ProcId" />
+      <PropertyRef Name="OwnerId" />
+      <PropertyRef Name="PetName" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="ProcId" Type="int" Nullable="false" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="PetName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Price" Type="money" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Pet__OwnerId__4F7CD00D">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerId" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Treatment__5165187F">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
+    <End Role="Treatment" Type="Self.Treatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="OwnerId" />
+        <PropertyRef Name="PetName" />
+      </Principal>
+      <Dependent Role="Treatment">
+        <PropertyRef Name="OwnerId" />
+        <PropertyRef Name="PetName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Treatment__ProcI__5070F446">
+    <End Role="Procedure" Type="Self.Procedure" Multiplicity="1" />
+    <End Role="Treatment" Type="Self.Treatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Procedure">
+        <PropertyRef Name="ProcId" />
+      </Principal>
+      <Dependent Role="Treatment">
+        <PropertyRef Name="ProcId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Procedure" EntityType="Self.Procedure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Pet__OwnerId__4F7CD00D" Association="Self.FK__Pet__OwnerId__4F7CD00D">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Treatment__5165187F" Association="Self.FK__Treatment__5165187F">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="Treatment" EntitySet="Treatment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Treatment__ProcI__5070F446" Association="Self.FK__Treatment__ProcI__5070F446">
+      <End Role="Procedure" EntitySet="Procedure" />
+      <End Role="Treatment" EntitySet="Treatment" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
